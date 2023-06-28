@@ -14,5 +14,6 @@
       "singleQuote": true,
       "useTabs": false
     }
-  }
+  },
+  "importMap": "./import_map.json"
 }
