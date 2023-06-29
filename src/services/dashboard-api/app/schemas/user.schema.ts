@@ -41,19 +41,18 @@ export const UserAuthDetailsSchema = z.object({
 export const AuthenticatedUserSchema = z.object({
   id: UUIDSchema,
   details: UserDetailsSchema,
-  security: UserSecuritySchema,
   feed: UserFeedSchema,
   auth: UserAuthDetailsSchema
 })
 
 export const RegisterUserSchema = z.object({
-  details: UserDetailsSchema,
-  nickname: z.string().max(NICKNAME_MAX_LENGTH, NICKNAME_ERROR_MESSAGE).min(NICKNAME_MIN_LENGTH),
-  security: z.object({
-    password: PasswordSchema,
-    confirmPassword: PasswordSchema
-  })
+  id: UUIDSchema,
+  name: z.string().max(NAME_MAX_LENGTH, NAME_ERROR_MESSAGE).min(NAME_MIN_LENGTH).regex(NAME_REGEX, 'Invalid name'),
+  email: EmailSchema,
+  password: PasswordSchema,
+  confirmPassword: PasswordSchema
 })
+
 
 export const LoginUserSchema = z.object({
   email: PasswordSchema,
